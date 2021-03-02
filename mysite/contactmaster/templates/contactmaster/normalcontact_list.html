@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Me
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="get">
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+          <label for="text4a">環境</label>
+          <input type="text" class="form-control" id="text4a" placeholder="AWS / GIO / etc" name="env" value="{{ request.GET.env }}">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="text4a">システム識別子</label>
+            <input type="text" class="form-control" id="text4a" placeholder="xxx" name="identifier" value="{{ request.GET.identifier }}">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="text4a">仮置き</label>
+            <input type="text" class="form-control" id="text4a" placeholder="枠だけ確保" name="tmp" value="{{ request.GET.tmp }}">
+        </div>
+    </div>
+
+    <div class="form-row align-items-center">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="contact" id="radio2a" value="0">
+            <label class="form-check-label" for="radio2a">通常連絡先</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="contact" id="radio2b" value="1">
+            <label class="form-check-label" for="radio2b">障害連絡先</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="contact" id="radio2b" value="2">
+            <label class="form-check-label" for="radio2b">大規模障害連絡先</label>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">所属部署</th>
+            <th scope="col">氏名</th>
+            <th scope="col">電話連絡先（営業時間内）</th>
+            <th scope="col">電話連絡先（営業時間外）</th>
+            <th scope="col">メールアドレス</th>
+        </tr>
+    </thead>
+    {% for val in object_list %}
+    <tr>
+        <td>{{ val.no }}</td>
+        <td>{{ val.deployment }}</a></td>
+        <td>{{ val.name }}</td>
+        <td>{{ val.tel_business_hours}}</td>
+        <td>{{ val.tel_not_business_hours}}</td>
+        <td>{{ val.email}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

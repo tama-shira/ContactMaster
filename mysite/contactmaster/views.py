@@ -23,6 +23,11 @@ def detail(request, system_id):
     object_list = NormalContact.objects.filter(system_id__exact=system_id)
     return render(request, 'detail.html', {'system_name': system_object.system_name, 'object_list': object_list})
 
+class SearchList(ListView):
+    def get_queryset(self):
+        object_list = NormalContact.objects.all()
+        return object_list
+
 
 
 
