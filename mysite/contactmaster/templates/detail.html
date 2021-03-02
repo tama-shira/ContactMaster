@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Me
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ system_name }}</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">所属部署</th>
+            <th scope="col">氏名</th>
+            <th scope="col">電話連絡先（営業時間内）</th>
+            <th scope="col">電話連絡先（営業時間外）</th>
+            <th scope="col">メールアドレス</th>
+        </tr>
+    </thead>
+    {% for val in object_list %}
+    <tr>
+        <td>{{ val.no }}</td>
+        <td>{{ val.deployment }}</a></td>
+        <td>{{ val.name }}</td>
+        <td>{{ val.tel_business_hours}}</td>
+        <td>{{ val.tel_not_business_hours}}</td>
+        <td>{{ val.email}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

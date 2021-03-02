@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Me
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="get">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input name="query" value="{{ request.GET.query }}" type="text" class="form-control mb-2">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">環境</th>
+            <th scope="col">システム識別子</th>
+            <th scope="col">システム名称</th>
+            <th scope="col">監視サービス開始日</th>
+            <th scope="col">Tel</th>
+            <th scope="col">Mail</th>
+            <th scope="col">営業日</th>
+            <th scope="col">営業時間</th>
+            <th scope="col">備考</th>
+        </tr>
+    </thead>
+    {% for val in object_list %}
+    <tr>
+        <td>{{ val.env }}</td>
+        <td>{{ val.identifier }}</td>
+        <td><a href='contactmaster/detail/{{ val.id }}'>{{ val.system_name }}</a></td>
+        <td>{{ val.start_date }}</td>
+        <td>{{ val.tel | linebreaksbr}}</td>
+        <td>{{ val.mail | linebreaksbr}}</td>
+        <td>{{ val.business_day | linebreaksbr}}</td>
+        <td>{{ val.business_hour_stat }} - {{ val.business_hour_end }}</td>
+        <td>{{ val.remarks }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
